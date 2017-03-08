@@ -9,8 +9,8 @@ from pyperclip import paste
 def main():
     document=str()
     final=str()
-    for lines in iter(input,'###'):
-     document=document+lines+'\n'
+    for lines in iter(input,'###'):  # Allows multiple lines to be pasted into input
+     document=document+lines+'\n' # Builds one large string with all the lines that were captured from input
 
     print(document)
     dump=yaml.load(document)
