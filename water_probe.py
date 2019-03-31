@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import socket
-import os
 
 host = "192.168.20.155"
 port = 80
@@ -20,11 +19,11 @@ def main():
         else:
             print(data.decode())
         s.close()
-        with open(f"{os.getcwd()}/water_probe_state.state", "w") as f:
+        with open(f"/home/ha/.homeassistant/command-scripts/water_probe_state.state", "w") as f:
             f.writelines("0")
             f.close()
     except Exception as error:
-        with open(f"{os.getcwd()}/water_probe_state.state", "r") as f:
+        with open(f"/home/ha/.homeassistant/command-scripts/water_probe_state.state", "r") as f:
             data = f.readline()
             if data == threshold:
                 print("Probe Offline")
@@ -33,7 +32,7 @@ def main():
                 tracker = int(data)
                 tracker += 1
                 f.close()
-                with open(f"{os.getcwd()}/water_probe_state.state", "w") as f:
+                with open(f"/home/ha/.homeassistant/command-scripts/water_probe_state.state", "w") as f:
                     f.writelines(str(tracker))
                     f.close()
                     print("Ok")
